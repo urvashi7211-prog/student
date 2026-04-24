@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile — SRMS</title>
+  <meta name="description" content="Manage your student profile, interests, and uploaded resources." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<div class="app-layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="logo-icon">S</div><span>SRMS</span>
+    </div>
+    <nav class="sidebar-nav">
+      <span class="sidebar-section-label">Menu</span>
+      <a class="nav-item" href="dashboard.html"><span class="nav-icon">🏠</span> Dashboard</a>
+      <a class="nav-item" href="resources.html"><span class="nav-icon">📚</span> Resources</a>
+      <a class="nav-item" href="upload.html"><span class="nav-icon">⬆️</span> Upload</a>
+      <a class="nav-item active" href="profile.html"><span class="nav-icon">👤</span> Profile</a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-chip">
+        <div class="user-avatar" id="sidebar-avatar">–</div>
+        <div class="user-info">
+          <div class="user-name" id="sidebar-name">Loading…</div>
+          <div class="user-role" id="sidebar-role"></div>
+        </div>
+        <button class="logout-btn" title="Logout" onclick="logout()">⎋</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main-content">
+    <div class="topbar">
+      <div class="topbar-title">
+        <h1>Profile</h1>
+        <p>Manage your account information</p>
+      </div>
+    </div>
+
+    <div class="grid-2" style="align-items:start;">
+
+      <!-- Profile Card -->
+      <div class="card">
+        <div class="profile-header">
+          <div class="profile-avatar-lg" id="profile-avatar">–</div>
+          <div class="profile-info">
+            <h2 id="profile-name">—</h2>
+            <p id="profile-email">—</p>
+            <p id="profile-course" style="margin-top:.2rem;"></p>
+          </div>
+        </div>
+        <div class="card-body" style="display:flex;flex-direction:column;gap:.9rem;">
+          <div class="alert" id="profile-alert"></div>
+
+          <form id="profile-form" onsubmit="handleProfileUpdate(event)" style="display:flex;flex-direction:column;gap:.9rem;">
+            <div class="form-group">
+              <label for="edit-name">Full Name</label>
+              <input id="edit-name" type="text" required />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="edit-course">Course</label>
+                <input id="edit-course" type="text" />
+              </div>
+              <div class="form-group">
+                <label for="edit-semester">Semester</label>
+                <select id="edit-semester">
+                  <option value="1">Sem 1</option><option value="2">Sem 2</option>
+                  <option value="3">Sem 3</option><option value="4">Sem 4</option>
+                  <option value="5">Sem 5</option><option value="6">Sem 6</option>
+                  <option value="7">Sem 7</option><option value="8">Sem 8</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="edit-interests">Interests <span style="color:var(--text-muted);font-weight:400;">(comma-separated)</span></label>
+              <input id="edit-interests" type="text" placeholder="e.g. AI, Web Dev, DSA" />
+            </div>
+            <div class="form-group">
+              <label for="edit-password">New Password <span style="color:var(--text-muted);font-weight:400;">(leave blank to keep)</span></label>
+              <input id="edit-password" type="password" placeholder="Min. 6 characters" autocomplete="new-password" />
+            </div>
+            <button class="btn btn-primary" id="profile-save-btn" type="submit">Save Changes</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- My Uploads -->
+      <div class="card">
+        <div class="card-header">
+          <h2>My Uploads</h2>
+          <a href="upload.html" style="font-size:.82rem;">+ Upload</a>
+        </div>
+        <div class="card-body" id="my-uploads">
+          <div class="loading-row"><div class="spinner"></div></div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/profile.js"></script>
+</body>
+</html>

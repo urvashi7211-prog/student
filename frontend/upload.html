@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Upload Resource — SRMS</title>
+  <meta name="description" content="Upload notes, PDFs, or videos for your fellow students." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<div class="app-layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="logo-icon">S</div><span>SRMS</span>
+    </div>
+    <nav class="sidebar-nav">
+      <span class="sidebar-section-label">Menu</span>
+      <a class="nav-item" href="dashboard.html"><span class="nav-icon">🏠</span> Dashboard</a>
+      <a class="nav-item" href="resources.html"><span class="nav-icon">📚</span> Resources</a>
+      <a class="nav-item active" href="upload.html"><span class="nav-icon">⬆️</span> Upload</a>
+      <a class="nav-item" href="profile.html"><span class="nav-icon">👤</span> Profile</a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-chip">
+        <div class="user-avatar" id="sidebar-avatar">–</div>
+        <div class="user-info">
+          <div class="user-name" id="sidebar-name">Loading…</div>
+          <div class="user-role" id="sidebar-role"></div>
+        </div>
+        <button class="logout-btn" title="Logout" onclick="logout()">⎋</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main-content">
+    <div class="topbar">
+      <div class="topbar-title">
+        <h1>Upload Resource</h1>
+        <p>Share notes, PDFs, videos with your peers</p>
+      </div>
+    </div>
+
+    <div style="max-width:640px;">
+      <div class="card">
+        <div class="card-body">
+          <div class="alert" id="upload-alert"></div>
+
+          <form id="upload-form" onsubmit="handleUpload(event)" style="display:flex;flex-direction:column;gap:1rem;">
+
+            <!-- Drop Zone -->
+            <div class="drop-zone" id="drop-zone" onclick="document.getElementById('file-input').click()">
+              <div class="drop-icon">📂</div>
+              <p>Click or drag &amp; drop a file here</p>
+              <p style="font-size:.75rem;margin-top:.2rem;">PDF, Video, Word, PPT — max 100 MB</p>
+              <div class="file-chosen" id="file-label"></div>
+            </div>
+            <input type="file" id="file-input" style="display:none"
+              accept=".pdf,.mp4,.webm,.jpg,.jpeg,.png,.doc,.docx,.ppt,.pptx"
+              onchange="onFileSelected(this)" />
+
+            <div class="form-group">
+              <label for="res-title">Title <span style="color:var(--danger);">*</span></label>
+              <input id="res-title" type="text" placeholder="e.g. Data Structures Unit 3 Notes" required />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="res-subject">Subject <span style="color:var(--danger);">*</span></label>
+                <input id="res-subject" type="text" placeholder="e.g. Data Structures" required />
+              </div>
+              <div class="form-group">
+                <label for="res-semester">Semester <span style="color:var(--danger);">*</span></label>
+                <select id="res-semester" required>
+                  <option value="">Select</option>
+                  <option value="1">Sem 1</option><option value="2">Sem 2</option>
+                  <option value="3">Sem 3</option><option value="4">Sem 4</option>
+                  <option value="5">Sem 5</option><option value="6">Sem 6</option>
+                  <option value="7">Sem 7</option><option value="8">Sem 8</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="res-category">Category</label>
+                <select id="res-category">
+                  <option value="notes">Notes</option>
+                  <option value="assignment">Assignment</option>
+                  <option value="syllabus">Syllabus</option>
+                  <option value="question_paper">Question Paper</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="res-topic">Topic</label>
+                <input id="res-topic" type="text" placeholder="e.g. Linked Lists" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="res-description">Description</label>
+              <textarea id="res-description" placeholder="Brief description of the resource…"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="res-tags">Tags <span style="color:var(--text-muted);font-weight:400;">(comma-separated)</span></label>
+              <input id="res-tags" type="text" placeholder="e.g. arrays, sorting, notes" />
+            </div>
+
+            <button class="btn btn-primary" id="upload-btn" type="submit">Upload Resource</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/upload.js"></script>
+</body>
+</html>
