@@ -1,0 +1,22 @@
+{
+  "name": "srms-database",
+  "version": "1.0.0",
+  "description": "SRMS — Database seed, reset and utility scripts",
+  "scripts": {
+    "check": "node check.js",
+    "seed":  "node seed.js",
+    "reset": "node reset.js --confirm",
+    "index": "node indexes.js"
+  },
+  "dependencies": {
+    "bcryptjs":  "^2.4.3",
+    "dotenv":    "^16.4.5",
+    "mongoose":  "^8.3.4"
+  },
+  "notes": {
+    "check":  "Verify MongoDB is running + list collections",
+    "seed":   "Populate sample data (skips duplicates)",
+    "reset":  "Drop all collections and re-seed (dev only!)",
+    "index":  "Create/ensure all required indexes"
+  }
+}
